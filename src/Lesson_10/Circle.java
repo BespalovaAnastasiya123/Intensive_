@@ -1,6 +1,6 @@
 package Lesson_10;
 
-public class Circle implements Shape {
+public class Circle implements Shape, perimeterCircle {
     private static final String NAME = "Круг";
     private double radius;
     private String contextColor;
@@ -27,13 +27,21 @@ public class Circle implements Shape {
         return borderColor;
     }
 
+
     @Override
-    public double perimeter() {
-        return 2 * Math.PI * radius;
+    public double getRadius() {
+        return radius;
     }
 
     @Override
     public double square() {
         return Math.PI * Math.pow(radius, 2);
     }
+
+    public void shapeInfo() {
+        System.out.printf("%s имеет площадь = %.2f, периметр = %.2f, цвет фона - %s, цвет границ - %s%n",
+                getName(), square(), perimeterCircle(), getContextColor(), getBorderColor());
+    }
+
 }
+

@@ -2,8 +2,8 @@ package Lesson_10;
 
 public class Main {
     public static void main(String[] args) {
-        Animal catMurzik = new Cat("Мурзик");
-        Animal catBarsik = new Cat("Барсик");
+        Animal catMurzik = new Cat("Мурзик", 0);
+        Animal catBarsik = new Cat("Барсик", 0);
         Animal dogSharik = new Dog("Шарик");
         Animal dogBobik = new Dog("Бобик");
 
@@ -25,36 +25,27 @@ public class Main {
         System.out.println();
 
         Cat[] cats = new Cat[4];
-        cats[0] = new Cat("Васька");
-        cats[1] = new Cat("Баська");
-        cats[2] = new Cat("Маха");
-        cats[3] = new Cat("Пузик");
+        cats[0] = new Cat("Васька", 3);
+        cats[1] = new Cat("Баська", 3);
+        cats[2] = new Cat("Маха", 3);
+        cats[3] = new Cat("Пузик", 3);
+
+        Bowl bowl = new Bowl(13);
+        System.out.println("Сейчас в тарелке " + bowl.getFoodInBowl() + " единиц еды");
         for (Cat cat : cats) {
-            cat.eat(5);
+            cat.eat(bowl);
         }
         System.out.println();
 
-        Cat.addToPlate(100);
+        bowl.addToBowl(11);
         for (Cat cat : cats) {
-            cat.eat(18);
+            cat.eat(bowl);
         }
         System.out.println();
 
         Circle circle = new Circle(3, "Green", "White");
-        Rectangle rectangle = new Rectangle(4, 5, "Black", "Yellow");
-        Triangle triangle = new Triangle(10, 10, 10, "Yellow", "Black");
-
-        circle.perimeter();
-        circle.square();
-        System.out.println();
-
-        rectangle.perimeter();
-        rectangle.square();
-        System.out.println();
-
-        triangle.perimeter();
-        triangle.square();
-        System.out.println();
+        Rectangle rectangle = new Rectangle(1, 1, "Black", "Yellow");
+        Triangle triangle = new Triangle(1, 1, 1, "Yellow", "Black");
 
         circle.shapeInfo();
         rectangle.shapeInfo();

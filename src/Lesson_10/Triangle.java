@@ -1,6 +1,6 @@
 package Lesson_10;
 
-public class Triangle implements Shape {
+public class Triangle implements Shape, PerimeterTriangle {
     private static final String NAME = "Треугольник";
     private double sideA;
     private double sideB;
@@ -14,6 +14,18 @@ public class Triangle implements Shape {
         this.sideC = sideC;
         this.borderColor = borderColor;
         this.contextColor = contextColor;
+    }
+
+    public double getSideA() {
+        return sideA;
+    }
+
+    public double getSideB() {
+        return sideB;
+    }
+
+    public double getSideC() {
+        return sideC;
     }
 
     @Override
@@ -32,13 +44,14 @@ public class Triangle implements Shape {
     }
 
     @Override
-    public double perimeter() {
-        return sideA + sideB + sideC;
+    public double square() {
+        double p = perimeterTriangle() / 2;
+        return Math.sqrt(p) * (p - getSideA()) * (p - getSideB()) * (p - getSideC());
     }
 
     @Override
-    public double square() {
-        double p = perimeter() / 2.0;
-        return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideB));
+    public void shapeInfo() {
+        System.out.printf("%s имеет площадь = %.2f, периметр = %.2f, цвет фона - %s, цвет границ - %s%n",
+                getName(), square(), perimeterTriangle(), getContextColor(), getBorderColor());
     }
 }
