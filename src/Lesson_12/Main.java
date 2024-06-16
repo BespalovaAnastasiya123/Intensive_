@@ -6,7 +6,7 @@ public class Main {
                 {"1122", "2213", "5598", "899098"},
                 {"1209", "4563", "4256", "23457"},
                 {"83244", "45002", "716734", "567"},
-                {"397", "52751", "3714", "6127"}
+                {"397", "52751", "36714", "6127"}
         };
         try {
             int sum = arrayInfo(array);
@@ -20,18 +20,27 @@ public class Main {
         if (array.length != 4) {
             throw new MyArraySizeException("Неверный размер массива: количество строк не равно четырем");
         }
-        for (String[] gopa : array) {
-            if (gopa.length != 4) {
+        for (String[] rows : array) {
+            if (rows.length != 4) {
                 throw new MyArraySizeException("Неверный размер массива: количество столбцов не равно четырем");
             }
         }
         int sum = 0;
-        for (String[] strings : array) {
-            for (String string : strings) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                for (int k = 0; k < array[i][j].length(); k++) {
+                    if (!Character.isDigit(array[i][j].charAt(k))) {
+                        throw new MyArrayDataException("Некорректные данные в [" + i + "][" + j + "] ячейке массива " +
+                                "(в ячейке имеется текст или символы)");
+                    }
+                }
+
                 try {
-                    sum += Integer.parseInt(string);
-                } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("Неверный формат элемента массива");
+                    int number = Integer.parseInt(array[i][j]);
+                    sum += number;
+                } catch (Exception e) {
+                    throw new MyArrayDataException("Некорректные данные в [" + i + "][" + j + "] ячейке массива " +
+                            "(невозможно преобразовать в int)");
                 }
             }
         }
