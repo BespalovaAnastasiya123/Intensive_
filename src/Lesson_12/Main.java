@@ -10,7 +10,7 @@ public class Main {
         };
         try {
             int sum = arrayInfo(array);
-            System.out.println("Сумма элементов массива равна "+ sum);
+            System.out.println("Сумма элементов массива равна " + sum);
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
@@ -28,8 +28,8 @@ public class Main {
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                for (int k = 0; k < array[i][j].length(); k++) {
-                    if (!Character.isDigit(array[i][j].charAt(k))) {
+                for (int g = 0; g < array[i][j].length(); g++) {
+                    if (!Character.isDigit(array[i][j].charAt(g))) {
                         throw new MyArrayDataException("Некорректные данные в [" + i + "][" + j + "] ячейке массива " +
                                 "(в ячейке имеется текст или символы)");
                     }
