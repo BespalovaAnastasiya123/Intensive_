@@ -10,7 +10,6 @@ public class UniqueWords {
 
         Map<String, Integer> wordCount = new HashMap<>();
 
-        // Подсчитываем количество встреч каждого слова
         for (String word : words) {
             if (wordCount.containsKey(word)) {
                 wordCount.put(word, wordCount.get(word) + 1);
@@ -25,7 +24,7 @@ public class UniqueWords {
             System.out.println(word);
         }
 
-        System.out.println("\nКоличество встреч каждого слова:");
+        System.out.println("\nКоличество повторений каждого слова:");
         for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
