@@ -1,4 +1,4 @@
-package Lesson_14.entities;
+package entities;
 import java.lang.IllegalArgumentException;
 
 public class Factorial {
