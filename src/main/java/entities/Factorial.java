@@ -3,7 +3,7 @@ import java.lang.IllegalArgumentException;
 
 public class Factorial {
     public static void main(String[] args) {
-        System.out.println(factorial(3));
+        System.out.println(factorial(5));
     }
 
     public static long factorial(int value) {
