@@ -3,13 +3,13 @@ import java.lang.IllegalArgumentException;
 
 public class Factorial {
     public static void main(String[] args) {
-        System.out.println(factorial(5));
+        System.out.println(factorial(3));
     }
 
     public static long factorial(int value) {
         long result = 1;
         if (value < 0) {
-            throw new IllegalArgumentException("Число дожно быть не отрицательным");
+            throw new IllegalArgumentException("Число не должно быть отрицательным");
         } else if (value == 0) {
             return 1;
         } else {
