@@ -1,39 +1,39 @@
 import entities.Factorial;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertThrows;
 
 public class FactorialTest {
 
-    Factorial factorial;
-
-    @BeforeMethod
-    public void setUp() {
-        factorial = new Factorial();
-    }
+    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void testFactorialOfZero() {
-        long result = (int) factorial.factorial(0);
-        assertEquals(result, 1);
+        long result = Factorial.factorial(0);
+        softAssert.assertEquals(result, 1);
     }
 
     @Test
     public void testFactorialOfFive() {
-        long result = (int) factorial.factorial(5);
-        assertEquals(result, 120);
+        long result = Factorial.factorial(5);
+        softAssert.assertEquals(result, 120);
     }
 
     @Test
     public void testFactorialOfTen() {
-        long result = (int) factorial.factorial(10);
-        assertEquals(result, 3628800);
+        long result = Factorial.factorial(10);
+        softAssert.assertEquals(result, 3628800);
     }
 
     @Test
     public void testFactorialException() {
-        assertThrows(IllegalArgumentException.class, () -> factorial.factorial(-10));
+        assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(-10));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        softAssert.assertAll();
     }
 }
