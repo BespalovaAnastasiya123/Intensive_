@@ -62,10 +62,10 @@ public class TestApp {
     public void testButtonContinueOperation() {
         WebElement phoneInput = driver.findElement(By.xpath("//input[@id='connection-phone']"));
         phoneInput.click();
-        phoneInput.sendKeys(new CharSequence[]{"297777777"});
+        phoneInput.sendKeys("297777777");
         WebElement sum = driver.findElement(By.xpath("//input[@id='connection-sum']"));
         sum.click();
-        sum.sendKeys(new CharSequence[]{"10"});
+        sum.sendKeys("10");
         driver.findElement(By.xpath("//section[@class='pay']//button[text()='Продолжить']")).click();
         WebElement iframe = driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']"));
         driver.switchTo().frame(iframe);
