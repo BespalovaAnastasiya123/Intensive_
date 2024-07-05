@@ -8,8 +8,6 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import static org.testng.Assert.*;
 
 
@@ -34,10 +32,8 @@ public class TestApp2 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         driver.get("https://mts.by");
         if (!driver.findElements(By.xpath("//div[@class='cookie__wrapper']")).isEmpty() &&
