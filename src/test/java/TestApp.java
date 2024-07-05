@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 public class TestApp {
     private WebDriver driver;
@@ -20,10 +21,9 @@ public class TestApp {
     public void openApp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://mts.by");
-        if (driver.findElements(By.xpath("//div[@class='cookie__wrapper']")).size() != 0 &&
-                driver.findElement(By.xpath("//div[@class='cookie__wrapper']")).isDisplayed()) {
+        if (driver.findElement(By.xpath("//div[@class='cookie__wrapper']")).isDisplayed()) {
             driver.findElement(By.xpath("//button[@id='cookie-agree']")).click();
         }
 
@@ -44,18 +44,24 @@ public class TestApp {
 
     @Test
     public void testPresenceOfPaymentSystemLogos() {
-        List<WebElement> logos = driver.findElements(By.xpath("//div[@class='pay__partners']//img"));
-        for (WebElement logo : logos) {
-            Assertions.assertTrue(logo.isDisplayed());
+        List<WebElement> listLogo = driver.findElements(By.xpath("//div[@class='pay__partners']//img"));
+        for (WebElement logo : listLogo) {
+            String logoText = logo.getAttribute("alt");
+            Assertions.assertTrue(logo.isDisplayed()&
+                    (logoText.equals("Visa")||logoText.equals("Verified By Visa")||logoText.equals("MasterCard")
+                            ||logoText.equals("MasterCard Secure Code")||logoText.equals("Белкарт")),
+                    "Логотип не отобразился : " + logo.getAttribute("alt"));
         }
-
     }
 
     @Test
     public void testCurrentUrl() {
         driver.findElement(By.xpath("//div[@class='pay__wrapper']/a[text()='Подробнее о сервисе']")).click();
+        String currentTitle = driver.getTitle();
         String currentUrl = driver.getCurrentUrl();
-        Assertions.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", currentUrl);
+        Assertions.assertTrue(Objects.equals(currentUrl, "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/")
+                & Objects.equals(currentTitle, "Порядок оплаты и безопасность интернет платежей"), "Ссылка неверна");
+
     }
 
     @Test
