@@ -1,4 +1,3 @@
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -22,10 +21,6 @@ class Specification {
                 .build();
     }
 
-    public static void installSpecification(RequestSpecification request, ResponseSpecification response) {
-        RestAssured.requestSpecification = request;
-        RestAssured.responseSpecification = response;
-    }
 }
 
 

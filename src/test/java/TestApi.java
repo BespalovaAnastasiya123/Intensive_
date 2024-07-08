@@ -29,8 +29,9 @@ public class TestApi {
                 .body("url", Matchers.is("https://postman-echo.com/get?foo1=bar1&foo2=bar2"))
                 .spec(Specification.responseSpec());
     }
+
     @Test(priority = 2)
-    public void checkPostBodyRawText(){
+    public void checkPostBodyRawText() {
         Map<String, String> testValue = new HashMap<>();
         testValue.put("test", "value");
         RestAssured.given()
@@ -56,8 +57,9 @@ public class TestApi {
                 .body("url", Matchers.is("https://postman-echo.com/post"))
                 .spec(Specification.responseSpec());
     }
+
     @Test(priority = 3)
-    public void checkPostBodyFormData(){
+    public void checkPostBodyFormData() {
         Map<String, String> testValue = new HashMap<>();
         testValue.put("foo1", "bar1");
         testValue.put("foo2", "bar2");
@@ -88,7 +90,7 @@ public class TestApi {
     }
 
     @Test(priority = 4)
-    public void checkPutBody(){
+    public void checkPutBody() {
         String text = "This is expected to be sent back as part of response body.";
         RestAssured.given()
                 .spec(Specification.requestSpec())
@@ -115,7 +117,7 @@ public class TestApi {
     }
 
     @Test(priority = 5)
-    public void checkPatchBody(){
+    public void checkPatchBody() {
         String text = "This is expected to be sent back as part of response body.";
         RestAssured.given()
                 .spec(Specification.requestSpec())
@@ -142,7 +144,7 @@ public class TestApi {
     }
 
     @Test(priority = 6)
-    public void checkDeleteBody(){
+    public void checkDeleteBody() {
         String text = "This is expected to be sent back as part of response body.";
         RestAssured.given()
                 .spec(Specification.requestSpec())
